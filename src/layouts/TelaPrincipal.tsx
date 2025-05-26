@@ -1,27 +1,38 @@
-import React, { useState } from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
-import { PrincipalProps } from '../navigation/HomeNavigator';
-import { styles } from '../styles/styles';
-import Exemplo01 from '../components/Exemplo01';
-import Exemplo1 from '../components/Exemplo1';
-import Exemplo05_Text from '../components/Exemplo05_Text';
-import Exemplo06_TextInput from '../components/Exemplo06_TextInput';
-import Exemplo07_Image from '../components/Exemplo07_Image';
+import React from 'react';
+import { View, Button, StyleSheet, Image } from 'react-native';
+import { PrincipalProps } from '../navigator/HomeNavigator';
 
-//Componente chamado TelaPrincipal que recebe 
-//PrincipalProps 
-//como parametro e constrói uma View com o componente 
-//HelloWorld e Exemplo1 dentro
-const TelaPrincipal = (props: PrincipalProps) => {
-  
+const TelaPrincipal = ({ navigation }: PrincipalProps) => {
   return (
-    <View
-      style={[styles.tela]}>
-        <Exemplo07_Image/>
-        {/* <Exemplo1/> */}
+    <View style={styles.container}>
+      <Image source={require('../images/hospital.png')} style={styles.logo} />
+      <Button
+        title="Cadastrar Paciente"
+        onPress={() => navigation.navigate('CadastroPaciente')}
+      />
+      <Button
+        title="Ver Fila de Atendimento"
+        onPress={() => navigation.navigate('FilaAtendimento')}
+      />
     </View>
   );
-}
+};
 
-//exportando o componente TelaPrincipal para ficar visível para outros arquivos
 export default TelaPrincipal;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: 20,
+    padding: 20,
+    backgroundColor: '#fff',
+  },
+  logo: {
+    width: 150,
+    height: 150,
+    borderRadius: 75,
+    marginBottom: 30,
+  },
+});
